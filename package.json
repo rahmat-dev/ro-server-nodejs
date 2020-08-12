@@ -1,0 +1,18 @@
+{
+  "name": "ro-server-nodejs",
+  "version": "1.0.0",
+  "description": "Integration server to RajaOngkir",
+  "main": "index.js",
+  "author": "Rahmat Sulistio",
+  "license": "MIT",
+  "scripts": {
+    "serve": "nodemon index.js"
+  },
+  "dependencies": {
+    "axios": "^0.19.2",
+    "express": "^4.17.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.4"
+  }
+}
