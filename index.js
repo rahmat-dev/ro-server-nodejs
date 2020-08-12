@@ -8,14 +8,16 @@ const apiKey = "1e096071642f346a1881b4733ebc4cff";
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+const headers = {
+  key: apiKey,
+};
+
 // Get All Provinces
 app.get("/province", async (req, res) => {
   try {
     const response = await axios.get(
       "https://api.rajaongkir.com/starter/province",
-      {
-        headers: { key: apiKey },
-      }
+      { headers }
     );
     res.json(response.data.rajaongkir);
   } catch (error) {
@@ -25,16 +27,14 @@ app.get("/province", async (req, res) => {
 
 // Get All Cities by ProvinceID
 app.get("/city", async (req, res) => {
-  const provinceId = req.query.province_id;
+  const { province } = req.query;
 
   try {
     const response = await axios.get(
       "https://api.rajaongkir.com/starter/city",
       {
-        headers: { key: apiKey },
-        params: {
-          province: provinceId,
-        },
+        headers,
+        params: { province },
       }
     );
     res.json(response.data.rajaongkir);
@@ -57,9 +57,7 @@ app.post("/cost", async (req, res) => {
     const response = await axios.post(
       "https://api.rajaongkir.com/starter/cost",
       data,
-      {
-        headers: { key: apiKey },
-      }
+      { headers }
     );
     res.json(response.data.rajaongkir);
   } catch (error) {
